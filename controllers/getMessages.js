@@ -1,1 +1,13 @@
-module.exports = () => [1, 2, 3, 4, 5, 6, 7, 8, 9, 0];
+const messageModel = require('..models/message');
+module.exports = async (req, res) => {
+	const chatId = '';
+	await messageModel
+		.find({ chatId })
+		.then((result) => {
+			res.status(200).send(result);
+		})
+		.catch((err) => {
+			console.log(err);
+			res.status(500).send('error while getting messages');
+		});
+};

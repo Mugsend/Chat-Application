@@ -1,9 +1,8 @@
 const chatModel = require('../models/chat');
 const mongodb = require('mongodb');
 module.exports = async (req, res) => {
-	const userId = '';
 	await chatModel
-		.find({ members: new mongodb.ObjectId(userId) })
+		.find({ members: new mongodb.ObjectId(req.session.userId) })
 		.then((result) => {
 			console.log(result);
 			res.status(400).send(result);

@@ -4,7 +4,7 @@ const router = express.Router();
 const userMiddleware = require('../middlewares/userMiddleware');
 const getFriends = require('../controllers/getFriends');
 const addFriend = require('../controllers/addFriend');
-const getChats = require('../controller/getChats');
+const getChats = require('../controllers/getChats');
 const getMessages = require('../controllers/getMessages');
 router.use(userMiddleware);
 router.get('/', (req, res) => res.send('this is the users route'));

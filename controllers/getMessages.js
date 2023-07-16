@@ -1,9 +1,10 @@
-const messageModel = require('..models/message');
+const messageModel = require('../models/message');
 module.exports = async (req, res) => {
-	const chatId = '';
+	const { chatId } = req.body;
 	await messageModel
 		.find({ chatId })
 		.then((result) => {
+			console.log(chatId);
 			res.status(200).send(result);
 		})
 		.catch((err) => {

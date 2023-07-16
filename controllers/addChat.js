@@ -1,6 +1,7 @@
 const chatModel = require('../models/chat');
 module.exports = async (req, res) => {
-	const members = [];
+	const { memberUserId } = req.body;
+	const members = [req.session.userId, memberUserId];
 	await new chatModel({ members })
 		.save()
 		.then((result) => {

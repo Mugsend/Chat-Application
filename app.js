@@ -31,7 +31,7 @@ app.get('/setsession', (req, res) => {
 });
 app.post('/api/login', (req, res) => handleLogin(req, res));
 app.post('/api/signUp', (req, res) => handleSignUp(req, res));
-app.get('/api/checkUsernameAvailability', (req, res) =>
+app.post('/api/checkUsernameAvailability', (req, res) =>
 	getUsernameAvailabilty(req, res),
 );
 app.use('/api/user', userRoute);

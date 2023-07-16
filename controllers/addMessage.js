@@ -1,9 +1,9 @@
 const messageModel = require('../models/message');
-module.exports = async (content, sender, receiver) => {
+module.exports = async (content, sender, chatId) => {
 	await new messageModel({
+		chatId,
 		content,
 		sender,
-		receiver,
 	})
 		.save()
 		.then((result) => {

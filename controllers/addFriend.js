@@ -1,10 +1,11 @@
 const userModel = require('../models/user');
 const mongodb = require('mongodb');
 module.exports = (req, res) => {
+	const { friendUserId } = req.body;
 	userModel
 		.updateOne(
 			{ _id: new mongodb.ObjectId(req.session.userId) },
-			{ $push: { friends: new mongodb.ObjectId('64ad26ec029d346fbff91ab4') } },
+			{ $push: { friends: new mongodb.ObjectId(friendUserId) } },
 		)
 		.then((result) => {
 			console.log(result);

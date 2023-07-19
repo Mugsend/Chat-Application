@@ -1,7 +1,8 @@
-const userModel = require('../models/user');
+const models = require('../models');
 module.exports = async (req, res) => {
+	const userModel = models.userModel;
 	const { username } = req.body;
-	await userModel
+	userModel
 		.findOne({ username })
 		.then((result) => {
 			console.log(result);

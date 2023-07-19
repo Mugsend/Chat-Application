@@ -4,7 +4,6 @@ module.exports = async (req, res) => {
 	await userModel
 		.findOne({ username, password }, { _id: 1 })
 		.then((result) => {
-			console.log(result);
 			if (result) req.session.user = result._id;
 			res.status(200).send(result ? true : false);
 		})

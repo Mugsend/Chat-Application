@@ -1,7 +1,7 @@
 const models = require('../models');
 const services = require('./services');
 
-const getController = (req, res) => {
+const signInController = (req, res) => {
 	const { username, password } = req.body;
 	const userModel = models.userModel;
 	userModel
@@ -10,7 +10,12 @@ const getController = (req, res) => {
 			if (result) {
 				const userId = result._id;
 				const token = services.generateJWTToken(userId);
-				res.send(token);
+
+				res.cookie('token', token, {
+					withCredentials: true,
+					httpOnly: false, // cookie will be removed after 8 hours
+				});
+				res.send('loggedIn');
 			} else {
 				res.status(400).send('user not found');
 			}
@@ -21,7 +26,7 @@ const getController = (req, res) => {
 		});
 };
 
-const postController = (req, res) => {
+const signUpController = (req, res) => {
 	const { username, password } = req.body;
 	const userModel = models.userModel;
 	userModel
@@ -47,6 +52,6 @@ const postController = (req, res) => {
 };
 
 module.exports = {
-	getController,
-	postController,
+	signInController,
+	signUpController,
 };

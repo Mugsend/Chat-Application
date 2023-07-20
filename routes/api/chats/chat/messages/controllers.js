@@ -21,8 +21,7 @@ const postController = (req, res) => {
 	message
 		.save()
 		.then((result) => {
-			const messageId = result._id;
-			res.send(messageId);
+			res.send(result);
 		})
 		.catch((error) => {
 			console.log(error);

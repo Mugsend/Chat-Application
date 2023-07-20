@@ -1,7 +1,7 @@
 const chatsModels = require('../models');
-
-const chatModel = chatsModels.chatModel;
+const { userModel, chatModel } = chatsModels;
 
 module.exports = {
 	chatModel,
+	userModel,
 };

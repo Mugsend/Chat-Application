@@ -1,8 +1,18 @@
 const express = require('express');
 const router = express.Router();
-const { signInController, signUpController } = require('./controllers');
 
-router.post('/signin', signInController);
-router.post('/signup', signUpController);
+const middleware = require('./middleware');
+
+const { getController } = require('./controllers');
+
+const chatsRouter = require('./chats/router');
+const usersRouter = require('./users/router');
+
+router.use(middleware);
+
+router.use('/chats', chatsRouter);
+router.use('/users', usersRouter);
+
+router.get('/', getController);
 
 module.exports = router;

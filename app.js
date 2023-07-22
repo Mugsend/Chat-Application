@@ -18,6 +18,7 @@ app.get('/', (req, res) => {
 });
 
 app.use('/api', apiRouter);
+
 app.use((err, req, res, next) => {
 	res.status(400).send(err);
 });

@@ -1,7 +1,7 @@
 const models = require('./models');
 const chatModel = models.chatModel;
 const userModel = models.userModel;
-const get = (req, res) => {
+const getController = (req, res) => {
 	const userId = req.userId;
 	const userModel = models.userModel;
 	userModel
@@ -29,18 +29,18 @@ const get = (req, res) => {
 		});
 };
 
-const post = (req, res) => {
+const postController = (req, res) => {
 	const userId = req.userId;
 	const { memberId } = req.body;
 
 	const chat = new chatModel({ users: [userId, memberId] });
 	chat
 		.save()
-		.then((result) => {
-			const chatId = result._id;
+		.then((chat) => {
+			const chatId = chat._id;
 			userModel
 				.updateMany({ _id: [userId, memberId] }, { $push: { chats: chatId } })
-				.then(res.send(chatId))
+				.then(res.send(chat))
 				.catch((error) => {
 					console.log(error);
 					res.status(500).send('error while creating chat');
@@ -53,6 +53,6 @@ const post = (req, res) => {
 };
 
 module.exports = {
-	get,
-	post,
+	getController,
+	postController,
 };

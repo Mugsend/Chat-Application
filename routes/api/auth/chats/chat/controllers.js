@@ -6,11 +6,9 @@ const getController = (req, res) => {
 		.then((chat) => {
 			const userId = req.userId;
 			const chatUsers = chat.users;
-			const memberId = chatUsers
-				.filter((chatUserId) => chatUserId != userId)
-				.join();
+			const memberId = chatUsers.filter((chatUserId) => chatUserId != userId);
 			userModel
-				.findById(memberId)
+				.findById(memberId.length ? memberId[0] : userId)
 				.then((user) => {
 					const data = {
 						userId: user._id,

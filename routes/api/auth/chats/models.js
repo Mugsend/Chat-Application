@@ -1,4 +1,4 @@
-const apiModels = require('../models');
+const apiModels = require('../../models');
 const mongoose = require('mongoose');
 
 const userModel = apiModels.userModel;
